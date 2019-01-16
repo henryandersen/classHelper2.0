@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+<head>
+    <title>Node Authentication</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <style>
+        body        { padding-top:80px; word-wrap:break-word; }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <div class="page-header text-center">
+        <h1><span class="fa fa-anchor"></span>  Profile</h1>
+        <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+    </div>
+
+    <div class="row">
+
+        <!-- LOCAL INFORMATION -->
+        <div class="col-sm-6">
+            <div class="well">
+                <h3><span class="fa fa-user"></span> Local</h3>
+
+                    <p>
+                        <strong>email</strong>: <%= user.local.email %><br>
+                    </p>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<form action="/question" method="POST">
+  <input type="hidden" name="email" value= "<%= user.local.email %>">
+  <select id = "need" name = "need">
+   <option value="My computer won’t turn on">My computer won’t turn on</option>
+   <option value="My computer is stuck logged into another class account">My computer is stuck logged into another class account
+</option>
+   <option value="Mouse/keyboard issue">Mouse/keyboard issue
+</option>
+   <option value="I can’t find a file/project on my computer">I can’t find a file/project on my computer
+</option>
+   <option value="I want to talk about my grade in class">I want to talk about my grade in class
+</option>
+   <option value="I want Mr. Rowland’s opinion on something">I want Mr. Rowland’s opinion on something
+</option>
+   <option value="I want a check-in with Mr. Rowland (review of what I should be doing)">I want a check-in with Mr. Rowland (review of what I should be doing)
+</option>
+<option value="8">Other (Explain in comments)
+  </option>
+ </select>
+comments:
+<input type="text" placeholder="Comments" name="comments">
+Urgency: <select id="urgency" name="urgency">
+  <option value="1">1</option>
+     <option value="2">2</option>
+     <option value="3">3</option>
+     <option value="4">4</option>
+     <option value="5">5</option>
+     <option value="6">6</option>
+     <option value="7">7</option>
+     <option value="8">8</option>
+     <option value="9">9</option>
+     <option value="10">10 (Max)</option>
+   </select>
+  <button type="submit">Submit</button>
+</form>
+<ul class="needs">
+    <table class = "needs" border="1px">
+      <tr>
+        <th>Need</th>
+        <th>Urgency</th>
+          <th>Comment</th>
+          <th>Student</th>
+
+      </tr>
+  <% for(var i=0; i<needs.length; i++) {%>
+  <tr>
+    <td><%= needs[i].need%>
+    </td>
+    <td><%= needs[i].urgency %></td>
+    <td><%= needs[i].comments%>
+    </td>
+      <td><%= needs[i].email%>  </td>
+
+  </tr>
+  <% }%>
+</ul>
+</body>
+</html>

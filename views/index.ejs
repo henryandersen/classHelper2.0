@@ -1,11 +1,44 @@
+<!-- views/index.ejs -->
+<!doctype html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <title>MY APP</title>
+    <title>Class Helper</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+    <style>
+        body        { padding-top:80px; }
+    </style>
 </head>
 <body>
+<div class="container">
 
-wuf!!!!
+    <div class="jumbotron text-center">
+        <h1>Class Helper</h1>
 
+        <p>Login:</p>
+
+        <a href="/login" class="btn btn-default"><span class="fa fa-user"></span>  Login</a>
+        <a href="/signup" class="btn btn-default"><span class="fa fa-user"></span>  Signup</a>
+    </div>
+</div>
+<ul class="needs">
+    <table class = "needs" border="1px">
+      <tr>
+        <th>Request</th>
+        <th>Urgency</th>
+          <th>Comment</th>
+          <th> Student</th>
+      </tr>
+  <% for(var i=0; i<needs.length; i++) {%>
+  <tr>
+    <td><%= needs[i].need%>
+    </td>
+    <td><%= needs[i].urgency %></td>
+    <td><%= needs[i].comments%>
+    </td>
+    <td><%= needs[i].email%>  </td>
+  </tr>
+  <% }%>
+</ul>
 </body>
 </html>
