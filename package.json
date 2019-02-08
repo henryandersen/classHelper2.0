@@ -16,5 +16,14 @@
   "bugs": {
     "url": "https://github.com/henryandersen/classHelper2.0/issues"
   },
-  "homepage": "https://github.com/henryandersen/classHelper2.0#readme"
+  "homepage": "https://github.com/henryandersen/classHelper2.0#readme",
+  "dependencies": {
+    "bcrypt": "^3.0.3",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.3",
+    "express-session": "^1.15.6",
+    "morgan": "^1.9.1",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0"
+  }
 }

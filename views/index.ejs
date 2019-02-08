@@ -22,21 +22,21 @@
     </div>
 </div>
 <ul class="needs">
-    <table class = "needs" border="1px">
+    <table class = "table table-striped">
+      <caption>List of Requests</caption>
       <tr>
-        <th>Request</th>
+        <th>Need</th>
+        <th>Comment</th>
         <th>Urgency</th>
-          <th>Comment</th>
-          <th> Student</th>
+        <th>Student</th>
+
       </tr>
   <% for(var i=0; i<needs.length; i++) {%>
   <tr>
-    <td><%= needs[i].need%>
-    </td>
+    <td><%= needs[i].need%></td>
+    <td><%= needs[i].comments%></td>
     <td><%= needs[i].urgency %></td>
-    <td><%= needs[i].comments%>
-    </td>
-    <td><%= needs[i].email%>  </td>
+    <td><%= needs[i].email%></td>
   </tr>
   <% }%>
 </ul>

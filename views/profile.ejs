@@ -1,9 +1,15 @@
 <!doctype html>
 <html>
 <head>
-    <title>Node Authentication</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <title>Class Helper</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    <script src="clientScript.js"></script>
     <style>
         body        { padding-top:80px; word-wrap:break-word; }
     </style>
@@ -12,7 +18,7 @@
 <div class="container">
 
     <div class="page-header text-center">
-        <h1><span class="fa fa-anchor"></span>  Profile</h1>
+        <h1><span class="fa fa-anchor"></span> Student Profile</h1>
         <a href="/logout" class="btn btn-default btn-sm">Logout</a>
     </div>
 
@@ -21,11 +27,8 @@
         <!-- LOCAL INFORMATION -->
         <div class="col-sm-6">
             <div class="well">
-                <h3><span class="fa fa-user"></span> Local</h3>
-
-                    <p>
-                        <strong>email</strong>: <%= user.local.email %><br>
-                    </p>
+              <p><span class="fa fa-user"></span>
+                <strong>Logged in as</strong>: <%= user.local.email %></p>
 
             </div>
         </div>
@@ -33,30 +36,35 @@
     </div>
 
 </div>
-
-<form action="/question" method="POST">
-  <input type="hidden" name="email" value= "<%= user.local.email %>">
-  <select id = "need" name = "need">
-   <option value="My computer won’t turn on">My computer won’t turn on</option>
-   <option value="My computer is stuck logged into another class account">My computer is stuck logged into another class account
-</option>
-   <option value="Mouse/keyboard issue">Mouse/keyboard issue
-</option>
-   <option value="I can’t find a file/project on my computer">I can’t find a file/project on my computer
-</option>
-   <option value="I want to talk about my grade in class">I want to talk about my grade in class
-</option>
-   <option value="I want Mr. Rowland’s opinion on something">I want Mr. Rowland’s opinion on something
-</option>
-   <option value="I want a check-in with Mr. Rowland (review of what I should be doing)">I want a check-in with Mr. Rowland (review of what I should be doing)
-</option>
-<option value="8">Other (Explain in comments)
-  </option>
- </select>
-comments:
-<input type="text" placeholder="Comments" name="comments">
-Urgency: <select id="urgency" name="urgency">
-  <option value="1">1</option>
+<form class="form-inline" action="/question" method="POST">
+  <div class="form-row">
+    <input type="hidden" name="email" value= "<%= user.local.email %>">
+    <div class="col">
+        <select class="form-control" id = "need" name = "need">
+          <option selected disabled value=0>Select Problem</option>
+         <option value="My computer won’t turn on">My computer won’t turn on</option>
+         <option value="My computer is stuck logged into another class account">My computer is stuck logged into another class account
+      </option>
+         <option value="Mouse/keyboard issue">Mouse/keyboard issue
+      </option>
+         <option value="I can’t find a file/project on my computer">I can’t find a file/project on my computer
+      </option>
+         <option value="I want to talk about my grade in class">I want to talk about my grade in class
+      </option>
+         <option value="I want Mr. Rowland’s opinion on something">I want Mr. Rowland’s opinion on something
+      </option>
+         <option value="I want a check-in with Mr. Rowland (review of what I should be doing)">I want a check-in with Mr. Rowland (review of what I should be doing)
+      </option>
+      <option value="Other">Other (Explain in comments)
+        </option>
+       </select>
+     </div>
+     <div class="col">
+      <input class="form-control" type="text" placeholder="Comments" name="comments">
+    </div>
+<select class="form-control" id="urgency" name="urgency">
+     <option selected disabled>Urgency (1-10)</option>
+     <option value="1">1</option>
      <option value="2">2</option>
      <option value="3">3</option>
      <option value="4">4</option>
@@ -67,26 +75,25 @@ Urgency: <select id="urgency" name="urgency">
      <option value="9">9</option>
      <option value="10">10 (Max)</option>
    </select>
-  <button type="submit">Submit</button>
+  <button class="btn btn-primary" id="submitButton" type="submit">Submit</button>
+  </div>
 </form>
 <ul class="needs">
-    <table class = "needs" border="1px">
+    <table class = "table table-striped">
+      <caption>List of Requests</caption>
       <tr>
         <th>Need</th>
+        <th>Comment</th>
         <th>Urgency</th>
-          <th>Comment</th>
-          <th>Student</th>
+        <th>Student</th>
 
       </tr>
   <% for(var i=0; i<needs.length; i++) {%>
   <tr>
-    <td><%= needs[i].need%>
-    </td>
+    <td><%= needs[i].need%></td>
+    <td><%= needs[i].comments%></td>
     <td><%= needs[i].urgency %></td>
-    <td><%= needs[i].comments%>
-    </td>
-      <td><%= needs[i].email%>  </td>
-
+    <td><%= needs[i].email%></td>
   </tr>
   <% }%>
 </ul>
