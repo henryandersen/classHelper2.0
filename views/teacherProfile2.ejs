@@ -34,8 +34,8 @@
               </div>
               <div class="col">
                 <select class="btn btn-mini" id="sortSelect">
-                    <option value="0">Time</option>
                     <option value="1">Urgency</option>
+                    <option value="0">Time</option>
                 </select>
               </div>
     </div>
@@ -54,18 +54,50 @@
       </tr>
   <% for(var i=0; i<needs.length; i++) {%>
   <tr>
+    <% if(needs[i].urgency == "High"){ %>
     <td><%= needs[i].need%></td>
     <td><%= needs[i].comments%></td>
     <td><%= needs[i].urgency %></td>
     <td><%= needs[i].email%></td>
     <td>
-        <form method="post" action ="/tDelete1">
+        <form method="post" action ="/tDelete2">
         <input type= "hidden" name="buttonId" value= "<%=needs[i]._id%>">
         <button type= "submit" class="btn btn-danger" value ="finished">Resolve</button>
         </form>
     </td>
   </tr>
-  <% }%>
+  <% }}%>
+  <% for(var i=0; i<needs.length; i++) {%>
+  <tr>
+    <% if(needs[i].urgency == "Medium"){ %>
+    <td><%= needs[i].need%></td>
+    <td><%= needs[i].comments%></td>
+    <td><%= needs[i].urgency %></td>
+    <td><%= needs[i].email%></td>
+    <td>
+        <form method="post" action ="/tDelete2">
+        <input type= "hidden" name="buttonId" value= "<%=needs[i]._id%>">
+        <button type= "submit" class="btn btn-danger" value ="finished">Resolve</button>
+        </form>
+    </td>
+  </tr>
+  <% }}%>
+  <% for(var i=0; i<needs.length; i++) {%>
+  <tr>
+    <% if(needs[i].urgency == "Low"){ %>
+    <td><%= needs[i].need%></td>
+    <td><%= needs[i].comments%></td>
+    <td><%= needs[i].urgency %></td>
+    <td><%= needs[i].email%></td>
+    <td>
+        <form method="post" action ="/tDelete2">
+        <input type= "hidden" name="buttonId" value= "<%=needs[i]._id%>">
+        <button type= "submit" class="btn btn-danger" value ="finished">Resolve</button>
+        </form>
+    </td>
+  </tr>
+  <% }}%>
+</table>
 </ul>
 
 </body>

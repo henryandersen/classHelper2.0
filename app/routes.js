@@ -31,7 +31,7 @@ module.exports = function(app, passport) {
     app.post('/login', passport.authenticate('local-login', {failureRedirect : '/signup',
     failureFlash : true }), function(req,res){
     console.log(req.user.local.email)
-    if(req.user.local.email == "henryandersen7@gmail.com"){
+    if(req.user.local.email == "henryandersen7@gmail.com" || req.user.local.email == "Mr.Rowland@gmail.com"){
       res.redirect('/tProfile')
     }else{
       res.redirect('/profile')
@@ -77,7 +77,6 @@ module.exports = function(app, passport) {
     app.post('/delete', (req,res) => {
       var id = parseInt(req.body.buttonId);
       console.log(id);
-      console.log("poop");
       Need.findByIdAndRemove(req.body.buttonId, (err, todo) => {
         // As always, handle any potential errors:
         if (err) return res.status(500).send(err);
@@ -85,12 +84,44 @@ module.exports = function(app, passport) {
         // You can really do this however you want, though.
         const response = {
             message: "Todo successfully deleted",
-            id: Need._id
+
           };
+          console.log(response);
         });
-
+        res.redirect("/profile")
     });
+    app.post('/tDelete1', (req,res) => {
+      var id = parseInt(req.body.buttonId);
+      console.log(id);
+      Need.findByIdAndRemove(req.body.buttonId, (err, todo) => {
+        // As always, handle any potential errors:
+        if (err) return res.status(500).send(err);
+        // We'll create a simple object to send back with a message and the id of the document that was removed
+        // You can really do this however you want, though.
+        const response = {
+            message: "Todo successfully deleted",
 
+          };
+          console.log(response);
+        });
+        res.redirect("/tProfile")
+    });
+    app.post('/tDelete2', (req,res) => {
+      var id = parseInt(req.body.buttonId);
+      console.log(id);
+      Need.findByIdAndRemove(req.body.buttonId, (err, todo) => {
+        // As always, handle any potential errors:
+        if (err) return res.status(500).send(err);
+        // We'll create a simple object to send back with a message and the id of the document that was removed
+        // You can really do this however you want, though.
+        const response = {
+            message: "Todo successfully deleted",
+
+          };
+          console.log(response);
+        });
+        res.redirect("/tProfile5")
+    });
     app.get('/tProfile', isLoggedIn, function(req, res) {
       Need.find({}, function(err, needs) {
       if (err) throw err;
@@ -104,11 +135,21 @@ module.exports = function(app, passport) {
       });
 
     });
+    app.get('/tProfile5', isLoggedIn, function(req, res) {
+      Need.find({}, function(err, needs) {
+      if (err) throw err;
+
+      // object of the user
+      console.log(needs);
+      res.render("teacherProfile2.ejs", {needs: needs,
+          user : req.user // get the user out of session and pass to template
+      })
+
+      });
+
+    });
     app.post('/question', (req, res) => {
-      if(req.body.need == null || req.body.urgency == null){
-        console.log("poop");
-        res.redirect('/questionFail')
-      }
+
     var newRequest = new Need({need: req.body.need, email: req.body.email, comments: req.body.comments, urgency: req.body.urgency });
     newRequest.save(function(err){
       console.log("saved" + newRequest.need)
@@ -119,17 +160,14 @@ module.exports = function(app, passport) {
       // object of the user
       console.log(needs);
       console.log(req.body.need);
-      res.render("profile.ejs", {needs: needs, user: req.user})
+      res.redirect("/profile")
 
       });
     })
 
 
     })
-    // app.get('/questionFail', function(req, res) {
-    //     res.render('login.ejs', { message: req.flash('loginMessage')
-    //
-    // });
+
 
     // =====================================
     // LOGOUT ==============================
