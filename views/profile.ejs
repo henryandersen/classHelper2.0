@@ -17,34 +17,59 @@
         #probText {text-align: right; position: relative; top:20px; left:20px; }
         #peepee {width: 750px; }
         #need {width: 150px}
+        #thing {padding-left: 90px;}
+        #left {float: left;}
+        #right {position:relative; float: left; padding-left: 30px;}
+        .clear {
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+    text-decoration: underline;
+    text-decoration-color: blue;
+    color: blue
+}
     </style>
 </head>
 <body>
 
-<div class="container">
+<div class="container page-header">
+<div id="left">
+<div class= "well">
+  <p><span class="fa fa-user"></span>
+    <strong>Logged in:</strong> <%= user.local.email %></p>
+    <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+</div>
+</div>
 
-    <div class="page-header text-center">
-        <h1><span class="fa fa-anchor"></span> Student Profile</h1>
+<div id="right">
+  <div>
+      <h1><span class="fa fa-anchor"></span> Student Profile</h1>
 
-    </div>
+  </div>
+</div>
+</div>
+
+
 <p>
   <p>
 
 
         <!-- LOCAL INFORMATION -->
 
-            <div class="well">
-              <div class="form-group">
-              <p><span class="fa fa-user"></span>
-                <strong>Logged in:</strong> <%= user.local.email %></p>
-                <a href="/logout" class="btn btn-default btn-sm">Logout</a>
-                </div>
+<div id= "thing">
+<div id="faq"><h5>FAQ</h5></div>
+<ul id="list">
+  <li><button class="clear" id = "1">Mouse/Keyboard issue</button></li>
+  <li><button class="clear" id = "2">My computer is stuck logged into another class account</button></li>
+  <li><button class="clear" id = "3">I can’t find a file/project on my computer</button></li>
+</ul>
+</div>
 
-            </div>
-
-
-
-          <div class="well" id="jumbotron">
+<div class="container">
+          <div class="well">
 
         <form action="/question" method="POST">
         <input type="hidden" name="email" value= "<%= user.local.email %>">
@@ -68,13 +93,6 @@
                 <div>
                     <select onchange="getval(this);" class="form-control" id = "need" name = "need">
                       <option value="0">Select Problem</option>
-                     <option value="My computer won’t turn on">My computer won’t turn on</option>
-                     <option value="My computer is stuck logged into another class account">My computer is stuck logged into another class account
-                  </option>
-                     <option value="Mouse/keyboard issue">Mouse/keyboard issue
-                  </option>
-                     <option value="I can’t find a file/project on my computer">I can’t find a file/project on my computer
-                  </option>
                      <option value="I want to talk about my grade in class">I want to talk about my grade in class
                   </option>
                      <option value="I want Mr. Rowland’s opinion on something">I want Mr. Rowland’s opinion on something
@@ -83,6 +101,12 @@
                   </option>
                   <option value="Other">Other (Explain in comments)
                     </option>
+                    <option value="I can’t find a file/project on my computer">I can’t find a file/project on my computer
+                 </option>
+                 <option value="My computer is stuck logged into another class account">My computer is stuck logged into another class account
+              </option>
+              <option value="Mouse/keyboard issue">Mouse/keyboard issue
+           </option>
                    </select>
                  </div>
                  <div>
@@ -111,7 +135,7 @@
 
 
 
-
+</div>
 </div>
 <p>
 <p>

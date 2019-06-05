@@ -23,6 +23,27 @@ $(document).ready(function() {
 
       }
     })
+  $("#1").on("click", function() {
+    swal({
+      title: "You are having issues with you Mouse/Keyboard",
+      text: "Here's the general solution: Make sure everything is plugged in correctly.",
+      button: "OK",
+    });
+  })
+  $("#2").on("click", function() {
+    swal({
+      title: "You're computer is logged into the wrong account",
+      text: "Here's what you do: In the top left corner of your screen, click the Apple logo button and select 'log out'. Then sign into the correct period",
+      button: "OK",
+    });
+  })
+  $("#3").on("click", function() {
+    swal({
+      title: "You are having trouble finding a file or project",
+      text: "Here's what you do: Open up Finder (the application with the blue face) and type the name of the file/project in the search bar.",
+      button: "OK",
+    });
+  })
 
   $(".answerButton").on("click", function () {
     console.log(this.value);
