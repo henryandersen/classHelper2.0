@@ -3,6 +3,7 @@ var bodyParser = require('body-parser')
 var app  = express()     // define our app using express
 var mongoose = require('mongoose');
 var db;
+var cookieParser = require('cookie-parser');
 var passport = require('passport');
 var LocalStrategy = require('passport-local');
 var flash    = require('connect-flash');
